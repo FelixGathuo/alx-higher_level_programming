@@ -1,1 +1,1 @@
-README for pythn exceptions
+README for python exceptions
