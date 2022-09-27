@@ -1,14 +1,12 @@
 #!/usr/bin/python3
 """
-takes in a URL, sends a request to the URL & displays the body of the response
+fetches https://intranet.hbtn.io/status
 """
 if __name__ == "__main__":
-    import urllib.error as error
     import urllib.request as request
-    from sys import argv
-    req = request.Request(argv[1])
-    try:
-        with request.urlopen(req) as r:
-            print(r.read().decode('utf-8'))
-    except error.HTTPError as e:
-        print("Error code: {}".format(e.code))
+    with request.urlopen('https://intranet.hbtn.io/status') as r:
+        html = r.read()
+        print('Body response:')
+        print("\t- type: {}".format(type(html)))
+        print("\t- content: {}".format(html))
+        print("\t- utf8 content: {}".format(html.decode('utf-8')))
