@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-import requests
 """
-script that fetches url only with requests
+fetches https://intranet.hbtn.io/status
 """
-
-
-if __name__ == "__main__":
-    reply = requests.get('https://alx-intranet.hbtn.io/status').text
+if __name__ == '__main__':
+    import requests
+    r = requests.get('https://alx-intranet.hbtn.io/status')
+    text = r.text
     print("Body response:")
-    print("\t- type: {}".format(type(reply)))
-    print("\t- content: {}".format(reply))
+    print("\t- type: {}".format(type(text)))
+    print("\t- content: {}".format(text))
