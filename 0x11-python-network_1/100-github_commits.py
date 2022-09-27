@@ -1,23 +1,14 @@
 #!/usr/bin/python3
-from sys import argv
-import requests
 """
-script takes 2 args and gets 10 commits
+list 10 commits (from the most recent to oldest) of the repository and user
+sent in as arguments
 """
-
-
-if __name__ == "__main__":
-    """
-    argv[1] = repository
-    argv[2] = owner
-    """
-    req = requests.get('https://api.github.com/repos/{}/{}/commits'
-                       .format(argv[2], argv[1])).json()
-    count = 0
-    for commit in req:
-        name = commit.get("commit").get("author").get("name")
-        sha = commit.get("sha")
-        print("{}: {}".format(sha, name))
-        count += 1
-        if count == 10:
-            break
+if __name__ == '__main__':
+    import requests
+    from sys import argv
+    r = requests.get('https://api.github.com/repos/{}/{}/commits'
+                     .format(argv[2], argv[1]))
+    commits = r.json()
+    for commit in commits[:10]:
+        print(commit.get('sha'), end=': ')
+        print(commit.get('commit').get('author').get('name'))
